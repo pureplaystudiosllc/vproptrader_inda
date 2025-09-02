@@ -1,0 +1,1 @@
+import{b5 as t}from"./main-UPGOfi6h.js";async function a(){return t("/aboutUs",{method:"GET"})}async function n(a){return t("/tickets/getLog",{method:"GET",params:a})}async function e(a){return t("/tickets/create",{method:"POST",data:a})}export{e as a,n as b,a as g};

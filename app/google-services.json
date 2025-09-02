@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "771077513550",
+    "project_id": "vproptraderpro",
+    "storage_bucket": "vproptraderpro.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771077513550:android:d2bd78974547b90487be1f",
+        "android_client_info": {
+          "package_name": "com.futureharvest.vproptrader"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFGgxSnDvfYdySgkvVqURZ9_6xoE-_h_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

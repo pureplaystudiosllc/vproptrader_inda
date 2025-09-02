@@ -1,0 +1,33 @@
+buildscript {
+    apply from: 'CordovaLib/cordova.gradle'
+    apply from: 'repositories.gradle'
+    repositories repos
+    dependencies {
+        classpath "com.android.tools.build:gradle:${cordovaConfig.AGP_VERSION}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${cordovaConfig.KOTLIN_VERSION}"
+        classpath 'com.google.gms:google-services:4.4.3'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.6'
+    }
+
+    cdvHelpers.verifyCordovaConfigForBuild()
+}
+
+allprojects {
+    def hasRepositoriesGradle = file('repositories.gradle').exists()
+    if (hasRepositoriesGradle) {
+        apply from: 'repositories.gradle'
+    } else {
+        apply from: "${project.rootDir}/repositories.gradle"
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

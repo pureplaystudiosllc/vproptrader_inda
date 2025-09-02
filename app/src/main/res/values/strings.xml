@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">VPropTrader</string>
+    <string name="launcher_name">@string/app_name</string>
+    <string name="activity_name">@string/launcher_name</string>
+    <string name="ticker_title">Ticker</string>
+    <string name="tab_forex">Forex</string>
+    <string name="tab_indices">Indices</string>
+    <string name="tab_crypto">Crypto</string>
+    <string name="tab_commodities">Commodities</string>
+    <string name="tab_custom">Custom</string>
+    <string name="symbol">Symbol</string>
+    <string name="bid_price">Bid Price</string>
+    <string name="ask_price">Ask Price</string>
+    <string name="spread">Spread</string>
+    <string name="commissions">Commissions</string>
+    <string name="remove">Remove</string>
+    <string name="add_symbol">Add Symbol</string>
+    <string name="back">Back</string>
+    <string name="top_overview">
+    Equity Simulator is a tool that allows traders to simulate different scenarios of their strategy
+    and assess the potential impact on their equity curves. By understanding the range of possible
+    outcomes, traders can make informed risk management decisions and adjust their strategies
+    accordingly. Set the size of the starting capital, the win rate of your strategy, the RRR, the
+    number of iterations within the simulation, and the number of simulations you want to display.
+    Determine what your risk is in dollars or percentages and click the "Run" button.
+    </string>
+    <string name="equity_simulator">Equity Simulator</string>
+    <string name="description">Description</string>
+    <string name="simulator_description">
+     Capital\n
+    Your starting capital.\n
+    Win rate\n
+    Your average win rate.\n
+    Lines\n
+    Number of simulations.\n
+    RRR\n
+    Reward to Risk Ratio.\n
+    Iterations\n
+    Number of trades within one simulation.\n
+    Risk\n
+    Fixed amount of money.\n
+    Risk Percentage\n
+    % amount of your capital.
+    </string>
+    <string name="initial_capital">Capital</string>
+    <string name="win_rate_pct">Win Rate (%)</string>
+    <string name="simulation_lines">Lines</string>
+    <string name="rrr">RRR</string>
+    <string name="trade_iterations">Iterations</string>
+    <string name="risk_fixed">Fixed Risk</string>
+    <string name="risk_percentage">Risk Percentage (%)</string>
+    <string name="run">Run</string>
+    <string name="run_prompt">Run simulation to see results here</string>
+    <string name="ticker">Ticker</string>
+    <string name="Calculator">Calculator</string>
+    <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="privacy_policy_url">https://pureplaystudiosllc.github.io/vproptraderpro/privacypolicy.html</string>
+    <string name="privacy_policy_prompt">
+        Please review our Privacy Policy below before using the app.
+    </string>
+    <string name="agree">Agree</string>
+    <string name="decline">Decline</string>
+    <string name="perm_rationale_title">Permission Required</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="data_delay_disclaimer">Data may be delayed and is for informational purposes only.</string>
+    <string name="rate_this_app">Rate this App</string>
+    <string name="submit">Submit</string>
+    <string name="thank_you_feedback">Thank you for your feedback!</string>
+    <string name="give_us_feedback">Please rate us based on your experience</string>
+    <string name="newversioninfo">A new version is available with the latest features and improvements. Update now to get the best experience!</string>
+    <string name="facebook_app_id">1715188685859724</string>
+    <string name="facebook_client_token">d8adafa6b50e8b847f05c14fe7dc0db2</string>
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3419835294</string>
+</resources>

@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:hardwareAccelerated="true"
+    android:versionCode="10000"
+    android:versionName="1.0.0">
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <application
+        android:name=".MyApplication"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
+        <meta-data
+            android:name="com.facebook.sdk.AutoInitEnabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id" />
+        <meta-data
+            android:name="com.onesignal.NotificationAccentColor"
+            android:value="FF3B76EC" />
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+            android:exported="true"
+            android:label="@string/activity_name"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.App.SplashScreen"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter android:label="@string/launcher_name">
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+       
+        <activity
+            android:name=".TradingAccountPurchaseActivity"
+            android:exported="false"
+            android:theme="@style/Theme.App.SplashScreen"
+            android:label="TradingAccountPurchase" />
+            
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.cdv.core.file.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/cdv_core_file_provider_paths" />
+        </provider>
+    </application>
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+
+        <package android:name="com.facebook.katana" />
+        <package android:name="com.facebook.orca" />
+        <package android:name="com.facebook.mlite" />
+        <package android:name="com.facebook.workchat" />
+        <package android:name="com.facebook.work" />
+        <package android:name="com.facebook.pages.app" />
+        <package android:name="com.facebook.adsmanager" />
+        <package android:name="com.facebook.business.extension" />
+        <package android:name="com.facebook.analytics" />
+        <package android:name="com.facebook.services" />
+        <package android:name="com.facebook.system" />
+        <package android:name="com.facebook.appmanager" />
+        <package android:name="com.facebook.contacts" />
+        <package android:name="com.facebook.device" />
+        <package android:name="com.facebook.fbservice" />
+        <package android:name="com.facebook.installreferrer" />
+        <package android:name="com.facebook.notifications" />
+        <package android:name="com.facebook.permissions" />
+        <package android:name="com.facebook.platform" />
+        <package android:name="com.facebook.sharing" />
+        <package android:name="com.facebook.tools.dextest" />
+        <package android:name="com.facebook.tools" />
+        <package android:name="com.facebook.zero" />
+    </queries>
+</manifest>

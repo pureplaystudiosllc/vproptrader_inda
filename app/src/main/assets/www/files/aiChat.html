@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chat</title>
+  </head>
+
+  <body>
+    <script>
+      window.chtlConfig = { chatbotId: '8377389624', display: 'fullscreen' }
+    </script>
+    <script
+      async
+      data-id="8377389624"
+      id="chtl-script"
+      data-display="fullscreen"
+      type="text/javascript"
+      src="https://chatling.ai/js/embed.js"
+    ></script>
+    <script>
+      window.addEventListener('message', e => {
+        window.parent.postMessage(e.data)
+      })
+    </script>
+  </body>
+</html>
