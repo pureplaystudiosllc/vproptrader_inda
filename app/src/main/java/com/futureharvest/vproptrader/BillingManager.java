@@ -3,6 +3,7 @@ package com.futureharvest.vproptrader;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.PendingPurchasesParams;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.QueryProductDetailsParams;
@@ -26,19 +28,22 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
 public class BillingManager {
     private static final String TAG = "BillingManager";
     
     public static final String IN_APP_PURCHASE = "inapp";
+    private static final String PREFS_NAME = "BillingPrefs";
+    private static final String KEY_PURCHASED_PRODUCTS = "purchased_products";
     
     private final BillingClient billingClient;
     private final ExecutorService executorService;
     private final BillingManagerListener listener;
+    private final SharedPreferences sharedPreferences;
     
     private boolean isServiceConnected = false;
     
     private final Map<String, TradingAccountProduct> tradingAccountProducts;
+    private final List<Purchase> userPurchases;
     
     public interface BillingManagerListener {
         void onBillingClientReady();
@@ -49,7 +54,6 @@ public class BillingManager {
         void onAcknowledgePurchaseResponse(BillingResult billingResult);
     }
     
- 
     public static class TradingAccountProduct {
         private final String productId;
         private final String name;
@@ -70,7 +74,6 @@ public class BillingManager {
             this.priceCurrency = priceCurrency;
         }
         
-        // Getters
         public String getProductId() { return productId; }
         public String getName() { return name; }
         public String getDescription() { return description; }
@@ -83,22 +86,22 @@ public class BillingManager {
     public BillingManager(Context context, BillingManagerListener listener) {
         this.listener = listener;
         this.executorService = Executors.newSingleThreadExecutor();
+        this.sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        this.userPurchases = new ArrayList<>();
         
         this.tradingAccountProducts = initializeTradingAccountProducts();
         
         billingClient = BillingClient.newBuilder(context)
                 .setListener(this::onPurchasesUpdated)
-//                .enablePendingPurchases()
+                .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
                 .build();
         
         startServiceConnection();
     }
     
-
     private Map<String, TradingAccountProduct> initializeTradingAccountProducts() {
         Map<String, TradingAccountProduct> products = new HashMap<>();
         
- 
         products.put("trading_account_1000", new TradingAccountProduct(
             "trading_account_1000",
             "Starter Trading Account",
@@ -106,7 +109,6 @@ public class BillingManager {
             1000.0, "USD", 9.99, "USD"
         ));
         
-    
         products.put("trading_account_5000", new TradingAccountProduct(
             "trading_account_5000",
             "Standard Trading Account",
@@ -114,7 +116,6 @@ public class BillingManager {
             5000.0, "USD", 39.99, "USD"
         ));
         
-       
         products.put("trading_account_10000", new TradingAccountProduct(
             "trading_account_10000",
             "Premium Trading Account",
@@ -122,7 +123,6 @@ public class BillingManager {
             10000.0, "USD", 69.99, "USD"
         ));
         
-    
         products.put("trading_account_25000", new TradingAccountProduct(
             "trading_account_25000",
             "Professional Trading Account",
@@ -130,7 +130,6 @@ public class BillingManager {
             25000.0, "USD", 149.99, "USD"
         ));
         
-    
         products.put("trading_account_50000", new TradingAccountProduct(
             "trading_account_50000",
             "Enterprise Trading Account",
@@ -141,17 +140,14 @@ public class BillingManager {
         return products;
     }
     
-   
     public List<TradingAccountProduct> getAvailableTradingAccountProducts() {
         return new ArrayList<>(tradingAccountProducts.values());
     }
     
-   
     public TradingAccountProduct getTradingAccountProduct(String productId) {
         return tradingAccountProducts.get(productId);
     }
     
-   
     private void startServiceConnection() {
         billingClient.startConnection(new BillingClientStateListener() {
             @Override
@@ -160,7 +156,6 @@ public class BillingManager {
                     isServiceConnected = true;
                     Log.d(TAG, "Billing client connected successfully");
                     listener.onBillingClientReady();
-
                     queryExistingPurchases();
                 } else {
                     Log.e(TAG, "Billing client connection failed: " + billingResult.getDebugMessage());
@@ -171,14 +166,12 @@ public class BillingManager {
             @Override
             public void onBillingServiceDisconnected() {
                 isServiceConnected = false;
-                    Log.d(TAG, "Billing client disconnected");
-             
+                Log.d(TAG, "Billing client disconnected");
                 startServiceConnection();
             }
         });
     }
     
-   
     public void queryProductDetails(String productId) {
         if (!isServiceConnected) {
             Log.w(TAG, "Billing client not connected");
@@ -199,7 +192,7 @@ public class BillingManager {
             billingClient.queryProductDetailsAsync(params, (billingResult, productDetailsList) -> {
                 if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                     Log.d(TAG, "Product details loaded successfully for: " + productId);
-                    listener.onProductDetailsLoaded(productDetailsList.getProductDetailsList());
+                    listener.onProductDetailsLoaded(productDetailsList);
                 } else {
                     Log.e(TAG, "Failed to load product details: " + billingResult.getDebugMessage());
                 }
@@ -207,7 +200,6 @@ public class BillingManager {
         });
     }
     
-   
     public void launchBillingFlow(Activity activity, ProductDetails productDetails) {
         if (!isServiceConnected) {
             Log.w(TAG, "Billing client not connected");
@@ -225,7 +217,6 @@ public class BillingManager {
         billingClient.launchBillingFlow(activity, billingFlowParams);
     }
     
- 
     private void onPurchasesUpdated(BillingResult billingResult, @Nullable List<Purchase> purchases) {
         if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && purchases != null) {
             for (Purchase purchase : purchases) {
@@ -240,25 +231,22 @@ public class BillingManager {
         }
     }
     
- 
     private void handlePurchase(Purchase purchase) {
         if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
             if (!purchase.isAcknowledged()) {
-              
                 acknowledgePurchase(purchase.getPurchaseToken());
             }
             
-          
-            TradingAccountProduct product = getTradingAccountProduct(purchase.getOrderId());
+            TradingAccountProduct product = getTradingAccountProduct(purchase.getProducts().get(0));
             if (product != null) {
+                savePurchase(purchase);
                 listener.onPurchaseSuccess(purchase, product);
             } else {
-                Log.e(TAG, "Unknown product ID: " + purchase.getOrderId());
+                Log.e(TAG, "Unknown product ID: " + purchase.getProducts());
             }
         }
     }
     
- 
     private void acknowledgePurchase(String purchaseToken) {
         AcknowledgePurchaseParams params = AcknowledgePurchaseParams.newBuilder()
                 .setPurchaseToken(purchaseToken)
@@ -277,41 +265,61 @@ public class BillingManager {
         });
     }
     
-
     private void queryExistingPurchases() {
         if (!isServiceConnected) {
             return;
         }
         
-
         billingClient.queryPurchasesAsync(QueryPurchasesParams.newBuilder()
                 .setProductType(IN_APP_PURCHASE)
                 .build(), (billingResult, purchases) -> {
             if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                userPurchases.clear();
                 for (Purchase purchase : purchases) {
-                    handlePurchase(purchase);
+                    if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
+                        userPurchases.add(purchase);
+                        savePurchase(purchase);
+                    }
                 }
             }
         });
     }
     
-    /**
-     *
-     */
+    private void savePurchase(Purchase purchase) {
+        String productId = purchase.getProducts().get(0);
+        String purchaseData = purchase.getPurchaseToken() + "|" + purchase.getPurchaseTime();
+        
+        String existingPurchases = sharedPreferences.getString(KEY_PURCHASED_PRODUCTS, "");
+        if (!existingPurchases.contains(productId)) {
+            String newPurchases = existingPurchases.isEmpty() ? productId : existingPurchases + "," + productId;
+            sharedPreferences.edit().putString(KEY_PURCHASED_PRODUCTS, newPurchases).apply();
+        }
+        
+        sharedPreferences.edit().putString("purchase_" + productId, purchaseData).apply();
+    }
+    
     public boolean isProductPurchased(String productId) {
-
-        return false;
+        String purchasedProducts = sharedPreferences.getString(KEY_PURCHASED_PRODUCTS, "");
+        return purchasedProducts.contains(productId);
     }
     
-    /**
-     *
-     */
     public List<TradingAccountProduct> getUserPurchasedAccounts() {
-
-        return new ArrayList<>();
+        List<TradingAccountProduct> purchasedProducts = new ArrayList<>();
+        String purchasedProductIds = sharedPreferences.getString(KEY_PURCHASED_PRODUCTS, "");
+        
+        if (!purchasedProductIds.isEmpty()) {
+            String[] productIds = purchasedProductIds.split(",");
+            for (String productId : productIds) {
+                TradingAccountProduct product = tradingAccountProducts.get(productId.trim());
+                if (product != null) {
+                    purchasedProducts.add(product);
+                }
+            }
+        }
+        
+        return purchasedProducts;
     }
     
-
     public void destroy() {
         if (billingClient != null && isServiceConnected) {
             billingClient.endConnection();

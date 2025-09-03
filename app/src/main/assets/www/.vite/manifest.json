@@ -3,11 +3,11 @@
     "file": "assets/css/CouponCard-DKTlemMT.css",
     "src": "_CouponCard-!~{00N}~.js"
   },
-  "_CouponCard-ChD-cgEg.js": {
-    "file": "assets/js/CouponCard-ChD-cgEg.js",
+  "_CouponCard-DNohUySj.js": {
+    "file": "assets/js/CouponCard-DNohUySj.js",
     "name": "CouponCard",
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js"
     ],
     "css": [
@@ -54,11 +54,11 @@
     "file": "assets/css/KycVerificationDialog-CjDXDicC.css",
     "src": "_KycVerificationDialog-!~{00O}~.js"
   },
-  "_KycVerificationDialog-p5WqfaU1.js": {
-    "file": "assets/js/KycVerificationDialog-p5WqfaU1.js",
+  "_KycVerificationDialog-D5bXha7s.js": {
+    "file": "assets/js/KycVerificationDialog-D5bXha7s.js",
     "name": "KycVerificationDialog",
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js"
     ],
     "css": [
@@ -104,11 +104,11 @@
     "file": "assets/css/PCPayLaterBuyNowDialog-CuP0Th9t.css",
     "src": "_PCPayLaterBuyNowDialog-!~{00L}~.js"
   },
-  "_PCPayLaterBuyNowDialog-BMV40KYJ.js": {
-    "file": "assets/js/PCPayLaterBuyNowDialog-BMV40KYJ.js",
+  "_PCPayLaterBuyNowDialog-kKJAdtiZ.js": {
+    "file": "assets/js/PCPayLaterBuyNowDialog-kKJAdtiZ.js",
     "name": "PCPayLaterBuyNowDialog",
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js"
     ],
     "css": [
@@ -156,11 +156,11 @@
     "file": "assets/css/PCPayoutConditions-Bsw423z3.css",
     "src": "_PCPayoutConditions-!~{00M}~.js"
   },
-  "_PCPayoutConditions-BNXtkkdk.js": {
-    "file": "assets/js/PCPayoutConditions-BNXtkkdk.js",
+  "_PCPayoutConditions-BAZt-4H0.js": {
+    "file": "assets/js/PCPayoutConditions-BAZt-4H0.js",
     "name": "PCPayoutConditions",
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js"
     ],
     "css": [
@@ -203,11 +203,11 @@
     ]
   },
   "_main-!~{008}~.js": {
-    "file": "assets/css/main-CKanV1gG.css",
+    "file": "assets/css/main-CMZdBZfJ.css",
     "src": "_main-!~{008}~.js"
   },
-  "_main-UPGOfi6h.js": {
-    "file": "assets/js/main-UPGOfi6h.js",
+  "_main-DhCUZ9jG.js": {
+    "file": "assets/js/main-DhCUZ9jG.js",
     "name": "main",
     "isDynamicEntry": true,
     "imports": [
@@ -255,7 +255,7 @@
       "node_modules/.pnpm/@vant+touch-emulator@1.4.0/node_modules/@vant/touch-emulator/dist/index.mjs"
     ],
     "css": [
-      "assets/css/main-CKanV1gG.css"
+      "assets/css/main-CMZdBZfJ.css"
     ],
     "assets": [
       "assets/img/logo-v-gradient-Dybsg8ZU.png",
@@ -508,22 +508,22 @@
     "file": "assets/js/pdfh5-DcFc6bYW.js",
     "name": "pdfh5"
   },
-  "_support-COLyuSZO.js": {
-    "file": "assets/js/support-COLyuSZO.js",
+  "_support-1cz3Tox-.js": {
+    "file": "assets/js/support-1cz3Tox-.js",
     "name": "support",
     "imports": [
-      "_main-UPGOfi6h.js"
+      "_main-DhCUZ9jG.js"
     ]
   },
   "_useTradingData-!~{00Q}~.js": {
     "file": "assets/css/useTradingData-BooBMB3o.css",
     "src": "_useTradingData-!~{00Q}~.js"
   },
-  "_useTradingData-DiYS6hS-.js": {
-    "file": "assets/js/useTradingData-DiYS6hS-.js",
+  "_useTradingData-DFHhm9Jn.js": {
+    "file": "assets/js/useTradingData-DFHhm9Jn.js",
     "name": "useTradingData",
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js"
     ],
     "css": [
@@ -2319,13 +2319,13 @@
     "src": "src/assets/images/ya@2x.png"
   },
   "src/components/common/HomeBanner/promotion-banner/PromotionExtraOff50.vue": {
-    "file": "assets/js/PromotionExtraOff50-BJVXkMXq.js",
+    "file": "assets/js/PromotionExtraOff50-Cnbq8saH.js",
     "name": "PromotionExtraOff50",
     "src": "src/components/common/HomeBanner/promotion-banner/PromotionExtraOff50.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -2371,13 +2371,13 @@
     ]
   },
   "src/components/common/HomeBanner/promotion-banner/PromotionFree1000.vue": {
-    "file": "assets/js/PromotionFree1000-CdiB9DHq.js",
+    "file": "assets/js/PromotionFree1000-VmCNewQu.js",
     "name": "PromotionFree1000",
     "src": "src/components/common/HomeBanner/promotion-banner/PromotionFree1000.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -2423,13 +2423,13 @@
     ]
   },
   "src/components/common/HomeBanner/promotion-banner/PromotionService.vue": {
-    "file": "assets/js/PromotionService-Clc8NXRF.js",
+    "file": "assets/js/PromotionService-Dm5xUYvn.js",
     "name": "PromotionService",
     "src": "src/components/common/HomeBanner/promotion-banner/PromotionService.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -2475,13 +2475,13 @@
     ]
   },
   "src/components/common/HomeBanner/promotion-banner/PromotionStarForm.vue": {
-    "file": "assets/js/PromotionStarForm-xhGxwIiz.js",
+    "file": "assets/js/PromotionStarForm-D7yuWNAa.js",
     "name": "PromotionStarForm",
     "src": "src/components/common/HomeBanner/promotion-banner/PromotionStarForm.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -2535,12 +2535,12 @@
     "src": "src/pc/styles/index.scss"
   },
   "src/pc/views/home/free1k/free1k.vue": {
-    "file": "assets/js/free1k-Bs34stfo.js",
+    "file": "assets/js/free1k-CUgEwZgx.js",
     "name": "free1k",
     "src": "src/pc/views/home/free1k/free1k.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -2586,13 +2586,13 @@
     ]
   },
   "src/pc/views/home/main/components/popups/PCFirst1000Popup.vue": {
-    "file": "assets/js/PCFirst1000Popup-C3PE_ihA.js",
+    "file": "assets/js/PCFirst1000Popup-Cs0RRE8P.js",
     "name": "PCFirst1000Popup",
     "src": "src/pc/views/home/main/components/popups/PCFirst1000Popup.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -2638,13 +2638,13 @@
     ]
   },
   "src/pc/views/news/detail/index.vue": {
-    "file": "assets/js/index-Bw7gB-LR.js",
+    "file": "assets/js/index-ColbNRPA.js",
     "name": "index",
     "src": "src/pc/views/news/detail/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -2689,12 +2689,12 @@
     ]
   },
   "src/pc/views/news/index.vue": {
-    "file": "assets/js/index-BqEzFoyc.js",
+    "file": "assets/js/index-ZVAskmuY.js",
     "name": "index",
     "src": "src/pc/views/news/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -2740,13 +2740,13 @@
     ]
   },
   "src/pc/views/origin-iframe/index.vue": {
-    "file": "assets/js/index-Db3ItU0x.js",
+    "file": "assets/js/index-BVg_DR_w.js",
     "name": "index",
     "src": "src/pc/views/origin-iframe/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -2791,13 +2791,13 @@
     ]
   },
   "src/pc/views/promotions/detail/index.vue": {
-    "file": "assets/js/index-BkTuzqhq.js",
+    "file": "assets/js/index-CWqBDY5U.js",
     "name": "index",
     "src": "src/pc/views/promotions/detail/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -2852,22 +2852,22 @@
     ]
   },
   "src/pc/views/prop-trader/accounts-overview/detail/index.vue": {
-    "file": "assets/js/index-2nqW112I.js",
+    "file": "assets/js/index-B7-vItuZ.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/accounts-overview/detail/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
-      "_PCPayLaterBuyNowDialog-BMV40KYJ.js",
-      "_PCPayoutConditions-BNXtkkdk.js",
+      "_main-DhCUZ9jG.js",
+      "_PCPayLaterBuyNowDialog-kKJAdtiZ.js",
+      "_PCPayoutConditions-BAZt-4H0.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
     ],
     "dynamicImports": [
-      "_main-UPGOfi6h.js",
-      "_main-UPGOfi6h.js"
+      "_main-DhCUZ9jG.js",
+      "_main-DhCUZ9jG.js"
     ],
     "css": [
       "assets/css/index-CABLdfas.css"
@@ -2909,14 +2909,14 @@
     ]
   },
   "src/pc/views/prop-trader/accounts-overview/index.vue": {
-    "file": "assets/js/index-BFIvQuOO.js",
+    "file": "assets/js/index-wTVDWKIa.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/accounts-overview/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
-      "_PCPayLaterBuyNowDialog-BMV40KYJ.js",
+      "_main-DhCUZ9jG.js",
+      "_PCPayLaterBuyNowDialog-kKJAdtiZ.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -2969,15 +2969,15 @@
     ]
   },
   "src/pc/views/prop-trader/add-challenge/index.vue": {
-    "file": "assets/js/index-BOgVt2Jr.js",
+    "file": "assets/js/index-FYMwdOPm.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/add-challenge/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
-      "_CouponCard-ChD-cgEg.js",
-      "_KycVerificationDialog-p5WqfaU1.js",
+      "_main-DhCUZ9jG.js",
+      "_CouponCard-DNohUySj.js",
+      "_KycVerificationDialog-D5bXha7s.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -3027,14 +3027,14 @@
     ]
   },
   "src/pc/views/prop-trader/affiliate/index.vue": {
-    "file": "assets/js/index-c1cbxAnt.js",
+    "file": "assets/js/index-CJVFVfw5.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/affiliate/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
-      "_KycVerificationDialog-p5WqfaU1.js",
+      "_KycVerificationDialog-D5bXha7s.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -3080,19 +3080,19 @@
     ]
   },
   "src/pc/views/prop-trader/billing/index.vue": {
-    "file": "assets/js/index-D9nLxC4X.js",
+    "file": "assets/js/index-fKJw-JQe.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/billing/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
     ],
     "dynamicImports": [
-      "_main-UPGOfi6h.js"
+      "_main-DhCUZ9jG.js"
     ],
     "css": [
       "assets/css/index-DIXtH1XU.css"
@@ -3134,12 +3134,12 @@
     ]
   },
   "src/pc/views/prop-trader/coupon/index.vue": {
-    "file": "assets/js/index--tWhq7D6.js",
+    "file": "assets/js/index-DmiI291I.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/coupon/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3186,13 +3186,13 @@
     ]
   },
   "src/pc/views/prop-trader/fund/deposit/index.vue": {
-    "file": "assets/js/index-cCAYqVCO.js",
+    "file": "assets/js/index-3MPlWTL5.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/fund/deposit/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -3238,12 +3238,12 @@
     ]
   },
   "src/pc/views/prop-trader/fund/transaction/index.vue": {
-    "file": "assets/js/index-Dk8RwmPE.js",
+    "file": "assets/js/index-HX35Jtmt.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/fund/transaction/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3289,13 +3289,13 @@
     ]
   },
   "src/pc/views/prop-trader/fund/withdraw/index.vue": {
-    "file": "assets/js/index-D_fIyqAI.js",
+    "file": "assets/js/index-B1cbflYu.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/fund/withdraw/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -3340,12 +3340,12 @@
     ]
   },
   "src/pc/views/prop-trader/home/index.vue": {
-    "file": "assets/js/index-DzrW3s1J.js",
+    "file": "assets/js/index-CyaYQtE3.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/home/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3394,12 +3394,12 @@
     ]
   },
   "src/pc/views/prop-trader/info/index.vue": {
-    "file": "assets/js/index-BZTUo8Me.js",
+    "file": "assets/js/index-BxxXIWwe.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/info/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3445,12 +3445,12 @@
     ]
   },
   "src/pc/views/prop-trader/leaderboard/index.vue": {
-    "file": "assets/js/index-CuLSm1kr.js",
+    "file": "assets/js/index-K77I_nF0.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/leaderboard/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3496,14 +3496,14 @@
     ]
   },
   "src/pc/views/prop-trader/pay-order/index.vue": {
-    "file": "assets/js/index-BnXXaAAz.js",
+    "file": "assets/js/index-BOGd90Fu.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/pay-order/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
-      "_CouponCard-ChD-cgEg.js",
+      "_main-DhCUZ9jG.js",
+      "_CouponCard-DNohUySj.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -3548,13 +3548,13 @@
     ]
   },
   "src/pc/views/prop-trader/pay-out/index.vue": {
-    "file": "assets/js/index-Mx5pSwbp.js",
+    "file": "assets/js/index-p8FotJqk.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/pay-out/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -3599,14 +3599,14 @@
     ]
   },
   "src/pc/views/prop-trader/pay-out/request/index.vue": {
-    "file": "assets/js/index-gquGXzu5.js",
+    "file": "assets/js/index-q8t0NfOB.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/pay-out/request/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
-      "_PCPayoutConditions-BNXtkkdk.js",
+      "_main-DhCUZ9jG.js",
+      "_PCPayoutConditions-BAZt-4H0.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
@@ -3651,13 +3651,13 @@
     ]
   },
   "src/pc/views/prop-trader/support/contact/index.vue": {
-    "file": "assets/js/index-PImkKIUk.js",
+    "file": "assets/js/index-BZXEuDrt.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/support/contact/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_support-COLyuSZO.js",
-      "_main-UPGOfi6h.js",
+      "_support-1cz3Tox-.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3703,13 +3703,13 @@
     ]
   },
   "src/pc/views/prop-trader/support/ticket/index.vue": {
-    "file": "assets/js/index-ChI_Az30.js",
+    "file": "assets/js/index-CfDgtkNU.js",
     "name": "index",
     "src": "src/pc/views/prop-trader/support/ticket/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
-      "_support-COLyuSZO.js",
+      "_main-DhCUZ9jG.js",
+      "_support-1cz3Tox-.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3755,12 +3755,12 @@
     ]
   },
   "src/pc/views/terms/index.vue": {
-    "file": "assets/js/index-CUFjlfkU.js",
+    "file": "assets/js/index-D4JKwj_P.js",
     "name": "index",
     "src": "src/pc/views/terms/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3806,13 +3806,13 @@
     ]
   },
   "src/pc/views/trading/climber/index.vue": {
-    "file": "assets/js/index-BwPcW4_c.js",
+    "file": "assets/js/index-BOuC45xv.js",
     "name": "index",
     "src": "src/pc/views/trading/climber/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_useTradingData-DiYS6hS-.js",
-      "_main-UPGOfi6h.js",
+      "_useTradingData-DFHhm9Jn.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3858,13 +3858,13 @@
     ]
   },
   "src/pc/views/trading/instant/index.vue": {
-    "file": "assets/js/index-DD3_k8j5.js",
+    "file": "assets/js/index-DzH6UM4-.js",
     "name": "index",
     "src": "src/pc/views/trading/instant/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_useTradingData-DiYS6hS-.js",
-      "_main-UPGOfi6h.js",
+      "_useTradingData-DFHhm9Jn.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3910,13 +3910,13 @@
     ]
   },
   "src/pc/views/trading/one-step/index.vue": {
-    "file": "assets/js/index-DhckqpTe.js",
+    "file": "assets/js/index-MjE_PYq9.js",
     "name": "index",
     "src": "src/pc/views/trading/one-step/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_useTradingData-DiYS6hS-.js",
-      "_main-UPGOfi6h.js",
+      "_useTradingData-DFHhm9Jn.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -3962,13 +3962,13 @@
     ]
   },
   "src/pc/views/trading/two-step/index.vue": {
-    "file": "assets/js/index-CBLD1Xd_.js",
+    "file": "assets/js/index-CsPQ9E0V.js",
     "name": "index",
     "src": "src/pc/views/trading/two-step/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_useTradingData-DiYS6hS-.js",
-      "_main-UPGOfi6h.js",
+      "_useTradingData-DFHhm9Jn.js",
+      "_main-DhCUZ9jG.js",
       "_vue-vendor-dpeM2kxB.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
@@ -4018,19 +4018,19 @@
     "src": "src/styles/index.scss"
   },
   "src/views/home/main/components/popups/First1000Popup.vue": {
-    "file": "assets/js/First1000Popup-1nYaXtjn.js",
+    "file": "assets/js/First1000Popup-DA1GeOGF.js",
     "name": "First1000Popup",
     "src": "src/views/home/main/components/popups/First1000Popup.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vue-vendor-dpeM2kxB.js",
-      "_main-UPGOfi6h.js",
+      "_main-DhCUZ9jG.js",
       "_utils-vendor-Bv3pXXA2.js",
       "_vant-vendor-CCYRvjqt.js",
       "_pdfh5-DcFc6bYW.js"
     ],
     "css": [
-      "assets/css/First1000Popup-CR9ZG2TD.css"
+      "assets/css/First1000Popup-C4RiqZwb.css"
     ],
     "assets": [
       "assets/fonts/Poppins-Thin-yKOScHJn.woff2",

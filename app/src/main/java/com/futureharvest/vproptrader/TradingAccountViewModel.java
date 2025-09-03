@@ -11,31 +11,24 @@ public class TradingAccountViewModel extends ViewModel {
     private final MutableLiveData<List<BillingManager.TradingAccountProduct>> products = new MutableLiveData<>(new ArrayList<>());
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
+    private final MutableLiveData<BillingManager.TradingAccountProduct> selectedProduct = new MutableLiveData<>();
     
-    /**
-     * Get observable products list
-     */
     public LiveData<List<BillingManager.TradingAccountProduct>> getProducts() {
         return products;
     }
     
-    /**
-     * Get loading state
-     */
     public LiveData<Boolean> getIsLoading() {
         return isLoading;
     }
     
-    /**
-     * Get error message
-     */
     public LiveData<String> getErrorMessage() {
         return errorMessage;
     }
     
-    /**
-     * Update products list
-     */
+    public LiveData<BillingManager.TradingAccountProduct> getSelectedProduct() {
+        return selectedProduct;
+    }
+    
     public void updateProducts(List<BillingManager.TradingAccountProduct> newProducts) {
         if (newProducts != null) {
             products.setValue(newProducts);
@@ -43,30 +36,22 @@ public class TradingAccountViewModel extends ViewModel {
         }
     }
     
-    /**
-     * Set loading state
-     */
     public void setLoading(boolean loading) {
         isLoading.setValue(loading);
     }
     
-    /**
-     * Set error message
-     */
     public void setError(String error) {
         errorMessage.setValue(error);
     }
     
-    /**
-     * Clear error message
-     */
     public void clearError() {
         errorMessage.setValue(null);
     }
     
-    /**
-     * Get product by ID
-     */
+    public void selectProduct(BillingManager.TradingAccountProduct product) {
+        selectedProduct.setValue(product);
+    }
+    
     public BillingManager.TradingAccountProduct getProductById(String productId) {
         List<BillingManager.TradingAccountProduct> currentProducts = products.getValue();
         if (currentProducts != null) {
@@ -79,18 +64,68 @@ public class TradingAccountViewModel extends ViewModel {
         return null;
     }
     
-    /**
-     * Check if product exists
-     */
     public boolean hasProduct(String productId) {
         return getProductById(productId) != null;
     }
     
-    /**
-     * Get products count
-     */
     public int getProductsCount() {
         List<BillingManager.TradingAccountProduct> currentProducts = products.getValue();
         return currentProducts != null ? currentProducts.size() : 0;
+    }
+    
+    public List<BillingManager.TradingAccountProduct> getProductsByPriceRange(double minPrice, double maxPrice) {
+        List<BillingManager.TradingAccountProduct> currentProducts = products.getValue();
+        List<BillingManager.TradingAccountProduct> filteredProducts = new ArrayList<>();
+        
+        if (currentProducts != null) {
+            for (BillingManager.TradingAccountProduct product : currentProducts) {
+                if (product.getPrice() >= minPrice && product.getPrice() <= maxPrice) {
+                    filteredProducts.add(product);
+                }
+            }
+        }
+        
+        return filteredProducts;
+    }
+    
+    public List<BillingManager.TradingAccountProduct> getProductsByAccountBalance(double minBalance, double maxBalance) {
+        List<BillingManager.TradingAccountProduct> currentProducts = products.getValue();
+        List<BillingManager.TradingAccountProduct> filteredProducts = new ArrayList<>();
+        
+        if (currentProducts != null) {
+            for (BillingManager.TradingAccountProduct product : currentProducts) {
+                if (product.getAccountBalance() >= minBalance && product.getAccountBalance() <= maxBalance) {
+                    filteredProducts.add(product);
+                }
+            }
+        }
+        
+        return filteredProducts;
+    }
+    
+    public void sortProductsByPrice(boolean ascending) {
+        List<BillingManager.TradingAccountProduct> currentProducts = products.getValue();
+        if (currentProducts != null) {
+            List<BillingManager.TradingAccountProduct> sortedProducts = new ArrayList<>(currentProducts);
+            if (ascending) {
+                sortedProducts.sort((p1, p2) -> Double.compare(p1.getPrice(), p2.getPrice()));
+            } else {
+                sortedProducts.sort((p1, p2) -> Double.compare(p2.getPrice(), p1.getPrice()));
+            }
+            products.setValue(sortedProducts);
+        }
+    }
+    
+    public void sortProductsByAccountBalance(boolean ascending) {
+        List<BillingManager.TradingAccountProduct> currentProducts = products.getValue();
+        if (currentProducts != null) {
+            List<BillingManager.TradingAccountProduct> sortedProducts = new ArrayList<>(currentProducts);
+            if (ascending) {
+                sortedProducts.sort((p1, p2) -> Double.compare(p1.getAccountBalance(), p2.getAccountBalance()));
+            } else {
+                sortedProducts.sort((p1, p2) -> Double.compare(p2.getAccountBalance(), p1.getAccountBalance()));
+            }
+            products.setValue(sortedProducts);
+        }
     }
 }

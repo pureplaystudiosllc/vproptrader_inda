@@ -4,6 +4,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 if (cordovaConfig.IS_GRADLE_PLUGIN_KOTLIN_ENABLED) {
     apply plugin: 'kotlin-android'
+    apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 
     if(!cdvHelpers.isVersionGreaterThanEqual(cordovaConfig.KOTLIN_VERSION, '1.8.0')) {
         println "Kotlin version < 1.8.0 detected. Applying kotlin-android-extensions plugin."
@@ -170,6 +171,7 @@ android {
 
     buildFeatures {
         buildConfig true
+        compose true
     }
 
     defaultConfig {
@@ -274,6 +276,10 @@ android {
         }
     }
 
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.9.0'
+    }
+
     if (cdvReleaseSigningPropertiesFile) {
         signingConfigs {
             release {
@@ -301,11 +307,6 @@ android {
     }
 }
 
-/*
- * WARNING: Cordova Lib and platform scripts do management inside of this code here,
- * if you are adding the dependencies manually, do so outside the comments, otherwise
- * the Cordova tools will overwrite them
- */
 
 
 dependencies {
@@ -332,17 +333,17 @@ dependencies {
     implementation 'com.google.android.play:app-update:2.1.0'
     implementation 'com.onesignal:OneSignal:[5.1.6, 5.1.99]'
     implementation 'com.google.android.gms:play-services-ads:24.5.0'
-
+    // Google Play Billing Library - Latest stable version
+    implementation 'com.android.billingclient:billing:7.1.1'
     
     // Compose dependencies - Latest stable versions
-    implementation platform('androidx.compose:compose-bom:2025.08.01')
+    implementation platform('androidx.compose:compose-bom:2024.10.00')
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-tooling-preview'
     implementation 'androidx.compose.material3:material3'
-    implementation 'androidx.activity:activity-compose:1.10.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.9.3'
+    implementation 'androidx.activity:activity-compose:1.8.2'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0'
     implementation 'androidx.compose.runtime:runtime-livedata'
-    implementation 'com.android.billingclient:billing:8.0.0'
 }
 
 def addSigningProps(propsFilePath, signingConfig) {

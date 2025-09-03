@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.activity.ComponentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.Purchase;
 import com.facebook.appevents.AppEventsLogger;
@@ -20,13 +22,11 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
-/**
- * Trading Account Purchase Activity
- * Handles the purchase of different trading account tiers
- * Implements Google Play Billing Library 6.1.0 standards
- * Reports events to AppsFlyer, Facebook, and Firebase
- */
 public class TradingAccountPurchaseActivity extends ComponentActivity implements BillingManager.BillingManagerListener {
     private static final String TAG = "TradingAccountPurchase";
     
@@ -34,43 +34,30 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
     private AppEventsLogger facebookLogger;
     private FirebaseAnalytics firebaseAnalytics;
     private TradingAccountViewModel viewModel;
+    private String selectedProductId;
+    private final ExecutorService verifyExecutor = Executors.newSingleThreadExecutor();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        // Initialize analytics services
         initializeAnalytics();
-        
-        // Initialize billing manager
         billingManager = new BillingManager(this, this);
-        
-        // Initialize ViewModel
         viewModel = new ViewModelProvider(this).get(TradingAccountViewModel.class);
         
-        // Set Compose content - this will call the Kotlin Compose function
-//        setContent(() -> TradingAccountPurchaseScreen(
-//            viewModel,
-//            this::onProductSelected,
-//            this::finish
-//        ));
+        selectedProductId = getIntent().getStringExtra("product_id");
         
-        // Load available trading account products
         loadTradingAccountProducts();
+        
+        if (selectedProductId != null) {
+            onProductSelected(billingManager.getTradingAccountProduct(selectedProductId));
+        }
     }
     
-    /**
-     * Initialize all analytics services
-     */
     private void initializeAnalytics() {
         try {
-            // Initialize Facebook logger
             facebookLogger = AppEventsLogger.newLogger(this);
-            
-            // Initialize Firebase Analytics
             firebaseAnalytics = FirebaseAnalytics.getInstance(this);
-            
-            // AppsFlyer is automatically initialized in Application class
             Log.d(TAG, "Analytics services initialized");
         } catch (Exception e) {
             Log.e(TAG, "Failed to initialize analytics services", e);
@@ -90,12 +77,13 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
     
     private void onProductSelected(BillingManager.TradingAccountProduct product) {
         try {
+            if (product == null) {
+                Log.e(TAG, "Product not found");
+                return;
+            }
             Log.d(TAG, "Selected product: " + product.getName());
             
-            // Report product view event to all analytics services
             reportProductViewedEvent(product);
-            
-            // Query product details and launch billing flow
             billingManager.queryProductDetails(product.getProductId());
         } catch (Exception e) {
             Log.e(TAG, "Error handling product selection", e);
@@ -104,10 +92,8 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
         }
     }
     
-
     private void reportProductViewedEvent(BillingManager.TradingAccountProduct product) {
         try {
-            // Facebook Analytics
             if (facebookLogger != null) {
                 Bundle facebookParams = new Bundle();
                 facebookParams.putString("product_id", product.getProductId());
@@ -118,7 +104,6 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
                 facebookLogger.logEvent("product_viewed", facebookParams);
             }
             
-            // Firebase Analytics
             if (firebaseAnalytics != null) {
                 Bundle firebaseParams = new Bundle();
                 firebaseParams.putString("product_id", product.getProductId());
@@ -129,7 +114,6 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
                 firebaseAnalytics.logEvent("product_viewed", firebaseParams);
             }
             
-            // AppsFlyer
             Map<String, Object> appsFlyerParams = new HashMap<>();
             appsFlyerParams.put("product_id", product.getProductId());
             appsFlyerParams.put("product_name", product.getName());
@@ -145,8 +129,6 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
         }
     }
     
-
-    
     @Override
     public void onBillingClientReady() {
         Log.d(TAG, "Billing client is ready");
@@ -157,14 +139,9 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
     public void onProductDetailsLoaded(List<ProductDetails> productDetailsList) {
         try {
             if (productDetailsList != null && !productDetailsList.isEmpty()) {
-                ProductDetails productDetails = null;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                    productDetails = productDetailsList.getFirst();
-                }
-                assert productDetails != null;
+                ProductDetails productDetails = productDetailsList.get(0);
                 Log.d(TAG, "Product details loaded: " + productDetails.getProductId());
                 
-                // Launch billing flow
                 billingManager.launchBillingFlow(this, productDetails);
             }
         } catch (Exception e) {
@@ -178,19 +155,26 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
         try {
             Log.d(TAG, "Purchase successful: " + product.getName());
             
-            // Report purchase success event to all analytics services
             reportPurchaseSuccessEvent(purchase, product);
             
-            // Show success message
+            // Server-side verification hook (non-blocking with timeout)
+            Future<Boolean> verifyFuture = verifyExecutor.submit(() -> verifyPurchaseOnServer(
+                getPackageName(),
+                product.getProductId(),
+                purchase.getPurchaseToken()
+            ));
+            try {
+                Boolean verified = verifyFuture.get(3, TimeUnit.SECONDS);
+                Log.d(TAG, "Server verification result: " + verified);
+            } catch (Exception e) {
+                Log.w(TAG, "Server verification timeout or error", e);
+            }
+            
             String message = String.format("Congratulations! You have successfully purchased %s", product.getName());
             runOnUiThread(() -> Toast.makeText(this, message, Toast.LENGTH_LONG).show());
             
-            // Handle post-purchase logic here
-            // For example: unlock trading account, update user status, etc.
-            
-            // Return result
             Intent resultIntent = new Intent();
-//            resultIntent.putExtra("purchased_product_id", purchase.getProductId());
+            resultIntent.putExtra("purchased_product_id", product.getProductId());
             resultIntent.putExtra("purchased_product_name", product.getName());
             resultIntent.putExtra("account_balance", product.getAccountBalance());
             setResult(Activity.RESULT_OK, resultIntent);
@@ -201,15 +185,25 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
         }
     }
     
-    /**
-     * Report purchase success event to all analytics services
-     */
+    private boolean verifyPurchaseOnServer(String packageName, String productId, String purchaseToken) {
+        try {
+            // TODO: Replace with real HTTP call to your backend API.
+            // The backend should validate the purchase via Google Play Developer API.
+            // Keep this stub simple and safe.
+            Log.d(TAG, "Verifying purchase on server: " + productId);
+            // Simulate success
+            return true;
+        } catch (Exception e) {
+            Log.e(TAG, "Server verification failed", e);
+            return false;
+        }
+    }
+    
     private void reportPurchaseSuccessEvent(Purchase purchase, BillingManager.TradingAccountProduct product) {
         try {
-            // Facebook Analytics
             if (facebookLogger != null) {
                 Bundle facebookParams = new Bundle();
-//                facebookParams.putString("product_id", purchase.getProductId());
+                facebookParams.putString("product_id", product.getProductId());
                 facebookParams.putString("product_name", product.getName());
                 facebookParams.putDouble("price", product.getPrice());
                 facebookParams.putString("currency", product.getPriceCurrency());
@@ -219,10 +213,9 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
                 facebookLogger.logEvent("purchase_completed", facebookParams);
             }
             
-            // Firebase Analytics
             if (firebaseAnalytics != null) {
                 Bundle firebaseParams = new Bundle();
-//                firebaseParams.putString("product_id", purchase.getProductId());
+                firebaseParams.putString("product_id", product.getProductId());
                 firebaseParams.putString("product_name", product.getName());
                 firebaseParams.putDouble("price", product.getPrice());
                 firebaseParams.putString("currency", product.getPriceCurrency());
@@ -232,11 +225,10 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
                 firebaseAnalytics.logEvent("purchase_completed", firebaseParams);
             }
             
-            // AppsFlyer
             Map<String, Object> appsFlyerParams = new HashMap<>();
-//            appsFlyerParams.put("product_id", purchase.getProductId());
+            appsFlyerParams.put("product_id", product.getProductId());
             appsFlyerParams.put("product_name", product.getName());
-//            appsFlyerParams.put("price", purchase.getPrice());
+            appsFlyerParams.put("price", product.getPrice());
             appsFlyerParams.put("currency", product.getPriceCurrency());
             appsFlyerParams.put("purchase_token", purchase.getPurchaseToken());
             appsFlyerParams.put("account_balance", product.getAccountBalance());
@@ -250,15 +242,12 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
         }
     }
     
-    @Override
-    public void onPurchaseError(com.android.billingclient.api.BillingResult billingResult) {
+    public void onPurchaseError(BillingResult billingResult) {
         try {
             Log.e(TAG, "Purchase failed: " + billingResult.getDebugMessage());
             
-            // Report purchase failure event to all analytics services
             reportPurchaseFailureEvent(billingResult);
             
-            // Show error message
             String errorMessage = "Purchase failed: " + billingResult.getDebugMessage();
             runOnUiThread(() -> Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show());
         } catch (Exception e) {
@@ -267,12 +256,8 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
         }
     }
     
-    /**
-     * Report purchase failure event to all analytics services
-     */
-    private void reportPurchaseFailureEvent(com.android.billingclient.api.BillingResult billingResult) {
+    private void reportPurchaseFailureEvent(BillingResult billingResult) {
         try {
-            // Facebook Analytics
             if (facebookLogger != null) {
                 Bundle facebookParams = new Bundle();
                 facebookParams.putString("error_code", String.valueOf(billingResult.getResponseCode()));
@@ -281,7 +266,6 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
                 facebookLogger.logEvent("purchase_failed", facebookParams);
             }
             
-            // Firebase Analytics
             if (firebaseAnalytics != null) {
                 Bundle firebaseParams = new Bundle();
                 firebaseParams.putString("error_code", String.valueOf(billingResult.getResponseCode()));
@@ -290,14 +274,12 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
                 firebaseAnalytics.logEvent("purchase_failed", firebaseParams);
             }
             
-            // AppsFlyer
             Map<String, Object> appsFlyerParams = new HashMap<>();
             appsFlyerParams.put("error_code", billingResult.getResponseCode());
             appsFlyerParams.put("error_message", billingResult.getDebugMessage());
             appsFlyerParams.put("error_domain", "billing");
             AppsFlyerLib.getInstance().logEvent(this, "purchase_failed", appsFlyerParams);
             
-            // Log to Firebase Crashlytics for debugging
             FirebaseCrashlytics.getInstance().log("Purchase failed: " + billingResult.getDebugMessage());
             
             Log.d(TAG, "Purchase failure event reported to all analytics services");
@@ -312,7 +294,6 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
         try {
             Log.d(TAG, "Purchases updated: " + purchases.size() + " purchases");
             
-            // Report purchases updated event
             if (firebaseAnalytics != null) {
                 Bundle params = new Bundle();
                 params.putInt("purchase_count", purchases.size());
@@ -324,13 +305,11 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
         }
     }
     
-    @Override
-    public void onAcknowledgePurchaseResponse(com.android.billingclient.api.BillingResult billingResult) {
+    public void onAcknowledgePurchaseResponse(BillingResult billingResult) {
         try {
-            if (billingResult.getResponseCode() == com.android.billingclient.api.BillingClient.BillingResponseCode.OK) {
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                 Log.d(TAG, "Purchase acknowledged successfully");
                 
-                // Report acknowledgment success
                 if (firebaseAnalytics != null) {
                     Bundle params = new Bundle();
                     params.putString("status", "success");
@@ -339,7 +318,6 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
             } else {
                 Log.e(TAG, "Failed to acknowledge purchase: " + billingResult.getDebugMessage());
                 
-                // Report acknowledgment failure
                 if (firebaseAnalytics != null) {
                     Bundle params = new Bundle();
                     params.putString("status", "failed");
@@ -348,7 +326,6 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
                     firebaseAnalytics.logEvent("purchase_acknowledged", params);
                 }
                 
-                // Log to Crashlytics
                 FirebaseCrashlytics.getInstance().log("Purchase acknowledgment failed: " + billingResult.getDebugMessage());
             }
         } catch (Exception e) {
@@ -362,10 +339,10 @@ public class TradingAccountPurchaseActivity extends ComponentActivity implements
         try {
             super.onDestroy();
             
-            // Release billing manager resources
             if (billingManager != null) {
                 billingManager.destroy();
             }
+            verifyExecutor.shutdown();
         } catch (Exception e) {
             Log.e(TAG, "Error in onDestroy", e);
             FirebaseCrashlytics.getInstance().recordException(e);
